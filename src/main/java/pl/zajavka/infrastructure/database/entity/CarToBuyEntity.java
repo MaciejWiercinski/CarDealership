@@ -1,4 +1,4 @@
-package pl.zajavka.business.infrastructure.database.entity;
+package pl.zajavka.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,7 +31,10 @@ public class CarToBuyEntity {
     private String model;
 
     @Column(name = "year")
-    private String year;
+    private Integer year;
+
+    @Column(name = "color")
+    private String color;
 
     @Column(name = "price")
     private BigDecimal price;

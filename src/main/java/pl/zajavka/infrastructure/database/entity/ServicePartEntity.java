@@ -1,7 +1,6 @@
-package pl.zajavka.business.infrastructure.database.entity;
+package pl.zajavka.infrastructure.database.entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
 
 @Getter

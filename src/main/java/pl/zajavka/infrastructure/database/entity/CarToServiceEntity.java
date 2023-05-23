@@ -1,4 +1,4 @@
-package pl.zajavka.business.infrastructure.database.entity;
+package pl.zajavka.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,10 +32,7 @@ public class CarToServiceEntity {
     private String model;
 
     @Column(name = "year")
-    private String year;
-
-    @Column(name = "price")
-    private BigDecimal price;
+    private Integer year;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "carToService")
     private Set<CarServiceRequestEntity> carServiceRequests;

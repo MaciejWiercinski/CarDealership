@@ -1,4 +1,4 @@
-package pl.zajavka.business.infrastructure.database.entity;
+package pl.zajavka.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "car_service_request_id")
+@Table(name = "car_service_request")
 public class CarServiceRequestEntity {
 
     @Id

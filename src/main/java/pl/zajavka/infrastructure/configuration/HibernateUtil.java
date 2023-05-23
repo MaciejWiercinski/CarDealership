@@ -1,4 +1,4 @@
-package pl.zajavka.business.infrastructure.configuration;
+package pl.zajavka.infrastructure.configuration;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -8,7 +8,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
-import pl.zajavka.business.infrastructure.database.entity.*;
+import org.hibernate.service.ServiceRegistry;
+import pl.zajavka.infrastructure.database.entity.*;
 
 import java.util.Map;
 

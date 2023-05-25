@@ -1,9 +1,9 @@
 package pl.zajavka.business.management;
 
+import pl.zajavka.domain.CarServiceProcessingRequest;
 import pl.zajavka.domain.CarServiceRequest;
 import pl.zajavka.infrastructure.database.entity.*;
 
-import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,14 +35,6 @@ public class FileDataPreparationService {
     public List<Map<String, List<String>>> prepareNextTimePurchaseData() {
         return InputDataCache.getInputData(Keys.InputDataGroup.BUY_AGAIN, this::prepareMap);
 
-    }
-
-    private Map<String, List<String>> prepareMap(String line) {
-        List<String> grouped = Arrays.stream(line.split("->")).map(String::trim).toList();
-        return IntStream.iterate(0, previous -> previous + 2)
-                .boxed()
-                .limit(3)
-                .collect(Collectors.toMap(grouped::get, i -> List.of(grouped.get(i + 1).split(";"))));
     }
 
     public CustomerEntity buildCustomerEntity(List<String> inputData, InvoiceEntity invoice) {
@@ -110,5 +102,34 @@ public class FileDataPreparationService {
                 .model(inputData.get(2))
                 .year(Integer.parseInt(inputData.get(3)))
                 .build();
+    }
+
+    public List<CarServiceProcessingRequest> prepareServiceRequestsToProcess() {
+        return InputDataCache.getInputData(Keys.InputDataGroup.DO_THE_SERVICE, this::prepareMap).stream()
+                .map(this::createCarServiceRequestToProcess)
+                .toList();
+
+    }
+
+    private CarServiceProcessingRequest createCarServiceRequestToProcess(Map<String, List<String>> inputData) {
+        List<String> whats = inputData.get(Keys.Constants.WHAT.toString());
+        return CarServiceProcessingRequest.builder()
+                .mechanicPesel(inputData.get(Keys.Entity.MECHANIC.toString()).get(0))
+                .carVin(inputData.get(Keys.Entity.CAR.toString()).get(0))
+                .partSerialNumber(Optional.ofNullable(whats.get(0)).filter(value -> !value.isBlank()).orElse(null))
+                .partQuantity(Optional.ofNullable(whats.get(1)).filter(value -> !value.isBlank()).map(Integer::parseInt).orElse(null))
+                .serviceCode(whats.get(2))
+                .hours(Integer.parseInt(whats.get(3)))
+                .comment(whats.get(5))
+                .done(whats.get(5))
+                .build();
+    }
+
+    private Map<String, List<String>> prepareMap(String line) {
+        List<String> grouped = Arrays.stream(line.split("->")).map(String::trim).toList();
+        return IntStream.iterate(0, previous -> previous + 2)
+                .boxed()
+                .limit(3)
+                .collect(Collectors.toMap(grouped::get, i -> List.of(grouped.get(i + 1).split(";"))));
     }
 }

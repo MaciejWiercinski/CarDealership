@@ -44,4 +44,9 @@ public class CarService {
                 .build();
         return carDAO.saveCarToService(entity);
     }
+
+    public void printCarHistory(String vin) {
+        CarHistoryEntity carHistoryByVin = carDAO.findCarHistoryByVin(vin);
+
+    }
 }

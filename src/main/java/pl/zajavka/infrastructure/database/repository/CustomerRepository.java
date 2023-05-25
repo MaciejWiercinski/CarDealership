@@ -2,12 +2,9 @@ package pl.zajavka.infrastructure.database.repository;
 
 import org.hibernate.Session;
 import pl.zajavka.business.dao.CustomerDAO;
-import pl.zajavka.business.dao.SalesmanDAO;
 import pl.zajavka.infrastructure.configuration.HibernateUtil;
 import pl.zajavka.infrastructure.database.entity.CustomerEntity;
-import pl.zajavka.infrastructure.database.entity.SalesmanEntity;
 
-import java.io.ObjectStreamClass;
 import java.util.Objects;
 import java.util.Optional;
 

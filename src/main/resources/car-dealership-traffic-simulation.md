@@ -4,11 +4,7 @@
 [//]: # (Poniżej znajdziesz wpisy reprezentujące działania użytkownika. Zastanów się nad schematem / wzorcem pojedynczego wpisu.)
 [//]: # (Przy niektórych wpisach znajdziesz komentarz.)
 
-[//]: # (Najpierw stwórzmy podstawy działania salonu samochodowego)
-
-
-
-[//]: # (Teraz zasymulujmy sytuację, gdzie nowy klient kupuje samochód)
+[//]: # (Teraz zasymulujmy sytuację, gdzie klient kupuje samochód)
 [//]: # (name;surname;telephone;email;country;city;postal_code;address)
 BUY_FIRST_TIME -> CUSTOMER -> Alfred;Samochodowy;+48 754 552 234;alf.samoch@gmail.com;Polska;Wrocław;20-001;Bokserska 15 -> CAR -> 1G1PE5S97B7239380 -> SALESMAN -> 73021314515
 BUY_FIRST_TIME -> CUSTOMER -> Monika;Cybulska;+48 458 774 125;mon.cyb@gmail.com;Polska;Wrocław;30-001;Wesoła 24 -> CAR -> 1FT7X2B60FEA74019 -> SALESMAN -> 55091699846
@@ -29,7 +25,7 @@ SERVICE_REQUEST -> CUSTOMER -> Adrian;Paczkomat;+48 991 221 123;adr.paczk@gmail.
 [//]: # (Później, każdy mechanik sprawdza, czy została do niego przydzielona jakaś praca.)
 [//]: # (Oczywiście w takim przypadku, pisząc oprogramowanie musielibyśmy wprowadzić jakieś reguły biznesowe, żeby odzwierciedlić proces, w którym przydzielana jest praca mechanikom.)
 [//]: # (Z racji, że jest to przykład edukacyjny, uprościmy sobie całość.)
-[//]: # (service_code;quantity:product_code;quantity;comment;finished)
+[//]: # (serial_number;quantity:service_code;quantity;comment;finished)
 
 DO_THE_SERVICE -> MECHANIC -> 52070997836 -> CAR -> 2C3CDYAG2DH731952 -> WHAT -> 11523-7310;1;58394-014;3;OK;NOT_FINISHED
 DO_THE_SERVICE -> MECHANIC -> 67111396321 -> CAR -> 2C3CDYAG2DH731952 -> WHAT -> ;;55319-866;2;OK;FINISHED

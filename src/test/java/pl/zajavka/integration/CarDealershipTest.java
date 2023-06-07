@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import pl.zajavka.business.*;
 import pl.zajavka.business.dao.*;
-import pl.zajavka.business.management.CarDealershipManagementService;
 import pl.zajavka.business.management.FileDataPreparationService;
 import pl.zajavka.infrastructure.database.repository.*;
 

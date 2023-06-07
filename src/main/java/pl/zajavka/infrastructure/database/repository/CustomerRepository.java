@@ -17,7 +17,7 @@ public class CustomerRepository implements CustomerDAO {
 
             session.beginTransaction();
 
-            String query = "SELECT se FROM CustomerEntity se WHERE se.email = :email";
+            String query = "SELECT se FROM CustomerJpaRepository se WHERE se.email = :email";
             Optional<CustomerEntity> result = session.createQuery(query, CustomerEntity.class)
                     .setParameter("email", email)
                     .uniqueResultOptional();

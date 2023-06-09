@@ -2,7 +2,9 @@ package pl.zajavka.domain;
 
 import lombok.*;
 
+import java.util.Objects;
 import java.util.Set;
+
 @With
 @Value
 @Builder
@@ -17,4 +19,10 @@ public class CarToService {
     Integer year;
     Set<CarServiceRequest> carServiceRequests;
 
+    public boolean carBoughtHere() {
+        return Objects.isNull(vin)
+               && Objects.isNull(brand)
+               && Objects.isNull(model)
+               && Objects.isNull(year);
+    }
 }

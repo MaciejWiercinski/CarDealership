@@ -32,5 +32,5 @@ public class MechanicEntity {
     private String pesel;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mechanic")
-    private Set<ServiceMechanicEntity> serviceMechanic;
+    private Set<ServiceMechanicEntity> serviceMechanics;
 }

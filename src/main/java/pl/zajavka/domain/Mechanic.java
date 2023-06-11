@@ -16,6 +16,6 @@ public class Mechanic {
     String name;
     String surname;
     String pesel;
-    Set<ServiceMechanic> serviceMechanic;
+    Set<ServiceMechanic> serviceMechanics;
 
 }

@@ -8,10 +8,10 @@ public interface CustomerDAO {
 
     Optional<Customer> findByEmail(String email);
 
-    void issueInvoice(Customer  customer);
+    void issueInvoice(Customer customer);
 
-    void saveServiceRequest(Customer  customer);
+    void saveServiceRequest(Customer customer);
 
-    Customer  saveCustomer(Customer   );
+    Customer saveCustomer(Customer customer);
 
 }

@@ -1,6 +1,7 @@
 package pl.zajavka.business;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.zajavka.business.dao.CarServiceRequestDAO;
 import pl.zajavka.business.management.FileDataPreparationService;
@@ -10,21 +11,20 @@ import pl.zajavka.domain.CarToService;
 import pl.zajavka.domain.Customer;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Service
 @AllArgsConstructor
 public class CarServiceRequestService {
-
     private final FileDataPreparationService fileDataPreparationService;
     private final CarService carService;
     private final CustomerService customerService;
     private final CarServiceRequestDAO carServiceRequestDAO;
 
-    @Transactional
     public void requestService() {
         Map<Boolean, List<CarServiceRequest>> serviceRequests = fileDataPreparationService.createCarServiceRequests().stream()
                 .collect(Collectors.groupingBy(element -> element.getCar().carBoughtHere()));
@@ -38,10 +38,10 @@ public class CarServiceRequestService {
                 .orElse(findInCarToBuyAndSaveInCarToService(request.getCar()));
         Customer customer = customerService.findCustomer(request.getCustomer().getEmail());
 
-        CarServiceRequest carServiceRequest =buildCarServiceRequest(request, car, customer);
+        CarServiceRequest carServiceRequest = buildCarServiceRequest(request, car, customer);
         Set<CarServiceRequest> existingCarServiceRequests = customer.getCarServiceRequests();
         existingCarServiceRequests.add(carServiceRequest);
-        customerService.saveServiceRequest(customer);
+        customerService.saveServiceRequest(customer.withCarServiceRequests(existingCarServiceRequests));
     }
 
     private CarToService findInCarToBuyAndSaveInCarToService(CarToService car) {
@@ -53,16 +53,17 @@ public class CarServiceRequestService {
         CarToService car = carService.saveCarToService(request.getCar());
         Customer customer = customerService.saveCustomer(request.getCustomer());
 
-        CarServiceRequest carServiceRequest =buildCarServiceRequest(request, car, customer);
+        CarServiceRequest carServiceRequest = buildCarServiceRequest(request, car, customer);
         Set<CarServiceRequest> existingCarServiceRequests = customer.getCarServiceRequests();
         existingCarServiceRequests.add(carServiceRequest);
-        customerService.saveServiceRequest(customer);
+        customerService.saveServiceRequest(customer.withCarServiceRequests(existingCarServiceRequests));
     }
 
     private CarServiceRequest buildCarServiceRequest(
             CarServiceRequest request,
             CarToService car,
-            Customer customer) {
+            Customer customer
+    ) {
         OffsetDateTime when = OffsetDateTime.now();
         return CarServiceRequest.builder()
                 .carServiceRequestNumber(generateCarServiceRequestNumber(when))
@@ -82,10 +83,10 @@ public class CarServiceRequestService {
                 when.getMinute(),
                 when.getSecond(),
                 randomInt(10, 100)
-                );
-
+        );
     }
 
+    @SuppressWarnings("SameParameterValue")
     private int randomInt(int min, int max) {
         return new Random().nextInt(max - min) + min;
     }
@@ -94,10 +95,11 @@ public class CarServiceRequestService {
     public CarServiceRequest findAnyActiveServiceRequest(String carVin) {
         Set<CarServiceRequest> serviceRequests = carServiceRequestDAO.findActiveServiceRequestsByCarVin(carVin);
         if (serviceRequests.size() != 1) {
-            throw new RuntimeException("There should be only one active service request at a time, car vin: [%s]".formatted(carVin));
+            throw new RuntimeException(
+                    "There should be only one active service request at a time, car vin: [%s]".formatted(carVin));
         }
         return serviceRequests.stream()
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("Could not find any service request at a time, car vin: [%s]".formatted(carVin)));
+                .orElseThrow(() -> new RuntimeException("Could not find any service requests, car vin: [%s]".formatted(carVin)));
     }
 }

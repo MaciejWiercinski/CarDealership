@@ -4,7 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import pl.zajavka.business.CarPurchaseService;
 import pl.zajavka.business.CarService;
 import pl.zajavka.business.CarServiceProcessingService;
@@ -22,10 +27,21 @@ import java.util.List;
 import java.util.Objects;
 
 @Slf4j
+@Testcontainers
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringJUnitConfig(classes = {ApplicationConfiguration.class})
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class CarDealershipTest {
+
+    @Container
+    static PostgreSQLContainer<?> POSTGRESQL_CONTAINER = new PostgreSQLContainer<>("postgres:15.0");
+
+    @DynamicPropertySource
+    static void postgresqlContainerProperties(DynamicPropertyRegistry registry) {
+        registry.add("jdbc.url", () -> POSTGRESQL_CONTAINER.getJdbcUrl());
+        registry.add("jdbc.user", () -> POSTGRESQL_CONTAINER.getUsername());
+        registry.add("jdbc.pass", () -> POSTGRESQL_CONTAINER.getPassword());
+    }
 
     private CarPurchaseService carPurchaseService;
     private CarServiceRequestService carServiceRequestService;
@@ -40,28 +56,28 @@ public class CarDealershipTest {
     @Test
     @Order(1)
     void purchase() {
-        log.info("### RUNNING ORDER 3");
+        log.info("### RUNNING ORDER 1");
         carPurchaseService.purchase();
     }
 
     @Test
     @Order(2)
     void makeServiceRequests() {
-        log.info("### RUNNING ORDER 4");
+        log.info("### RUNNING ORDER 2");
         carServiceRequestService.requestService();
     }
 
     @Test
     @Order(3)
     void processServiceRequests() {
-        log.info("### RUNNING ORDER 5");
+        log.info("### RUNNING ORDER 3");
         carServiceProcessingService.process();
     }
 
     @Test
     @Order(4)
     void printCarHistory() {
-        log.info("### RUNNING ORDER 6");
+        log.info("### RUNNING ORDER 4");
         carService.printCarHistory("2C3CDYAG2DH731952");
         carService.printCarHistory("1GCEC19X27Z109567");
     }

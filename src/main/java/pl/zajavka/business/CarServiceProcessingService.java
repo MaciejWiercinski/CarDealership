@@ -1,16 +1,16 @@
 package pl.zajavka.business;
 
 import lombok.AllArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 import pl.zajavka.business.dao.ServiceRequestProcessingDAO;
 import pl.zajavka.business.management.FileDataPreparationService;
 import pl.zajavka.business.management.Keys;
 import pl.zajavka.domain.*;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Objects;
-
+@org.springframework.stereotype.Service
 @AllArgsConstructor
 public class CarServiceProcessingService {
 
@@ -22,7 +22,6 @@ public class CarServiceProcessingService {
     private final CarServiceRequestService carServiceRequestService;
     private final ServiceRequestProcessingDAO serviceRequestProcessingDAO;
 
-    @Transactional
     public void process() {
         List<CarServiceProcessingInputData> toProcess = fileDataPreparationService.prepareServiceRequestsToProcess();
         toProcess.forEach(this::processRequest);
@@ -30,7 +29,7 @@ public class CarServiceProcessingService {
 
     private void processRequest(CarServiceProcessingInputData request) {
         Mechanic mechanic = mechanicService.findMechanic(request.getMechanicPesel());
-        CarToService car = carService.findCarToService(request.getCarVin()).orElseThrow();
+        carService.findCarToService(request.getCarVin()).orElseThrow();
         CarServiceRequest serviceRequest = carServiceRequestService.findAnyActiveServiceRequest(request.getCarVin());
 
         Service service = serviceCatalogService.findService(request.getServiceCode());
@@ -50,19 +49,6 @@ public class CarServiceProcessingService {
         }
     }
 
-    private ServicePart buildServicePart(
-            CarServiceProcessingInputData request,
-            CarServiceRequest serviceRequest,
-            Part part
-    ) {
-        return ServicePart.builder()
-                .quantity(request.getPartQuantity())
-                .carServiceRequest(serviceRequest)
-                .part(part)
-                .build();
-
-    }
-
     private ServiceMechanic buildServiceMechanic(
             CarServiceProcessingInputData request,
             Mechanic mechanic,
@@ -75,6 +61,18 @@ public class CarServiceProcessingService {
                 .carServiceRequest(serviceRequest)
                 .mechanic(mechanic)
                 .service(service)
+                .build();
+    }
+
+    private ServicePart buildServicePart(
+            CarServiceProcessingInputData request,
+            CarServiceRequest serviceRequest,
+            Part part
+    ) {
+        return ServicePart.builder()
+                .quantity(request.getPartQuantity())
+                .carServiceRequest(serviceRequest)
+                .part(part)
                 .build();
     }
 }

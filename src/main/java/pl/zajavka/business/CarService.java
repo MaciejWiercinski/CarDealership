@@ -2,6 +2,7 @@ package pl.zajavka.business;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.zajavka.business.dao.CarToBuyDAO;
 import pl.zajavka.business.dao.CarToServiceDAO;
@@ -12,6 +13,7 @@ import pl.zajavka.domain.CarToService;
 import java.util.Optional;
 
 @Slf4j
+@Service
 @AllArgsConstructor
 public class CarService {
 
@@ -51,12 +53,12 @@ public class CarService {
     public void printCarHistory(String vin) {
         CarHistory carHistoryByVin = carToServiceDAO.findCarHistoryByVin(vin);
         log.info("###CAR HISTORY FOR VIN: [{}]", vin);
-        carHistoryByVin.getCarCarServiceRequests().forEach(this::printServiceRequest);
+        carHistoryByVin.getCarServiceRequests().forEach(this::printServiceRequest);
     }
 
     private void printServiceRequest(CarHistory.CarServiceRequest serviceRequest) {
         log.info("###SERVICE REQUEST: [{}]", serviceRequest);
-        serviceRequest.getServices().forEach(service -> log.info("SERVICE: [{}]", service));
+        serviceRequest.getServices().forEach(service -> log.info("###SERVICE: [{}]", service));
         serviceRequest.getParts().forEach(part -> log.info("###PART: [{}]", part));
     }
 }

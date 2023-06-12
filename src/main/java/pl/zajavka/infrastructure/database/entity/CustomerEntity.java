@@ -3,8 +3,6 @@ package pl.zajavka.infrastructure.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -35,7 +33,7 @@ public class CustomerEntity {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 

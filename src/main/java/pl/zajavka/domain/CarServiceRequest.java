@@ -8,11 +8,9 @@ import java.util.Set;
 @With
 @Value
 @Builder
-@EqualsAndHashCode(of = "carServiceRequestId")
+@EqualsAndHashCode(of = "carServiceRequestNumber")
 @ToString(of = {"carServiceRequestId", "carServiceRequestNumber", "receivedDateTime", "completedDateTime", "customerComment"})
-
 public class CarServiceRequest {
-
 
     Integer carServiceRequestId;
     String carServiceRequestNumber;

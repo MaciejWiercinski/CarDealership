@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
-
 public class FileDataPreparationService {
 
     public List<CarPurchaseRequestInputData> prepareFirstTimePurchaseData() {
@@ -33,12 +32,10 @@ public class FileDataPreparationService {
                 .build();
     }
 
-
     public List<CarPurchaseRequestInputData> prepareNextTimePurchaseData() {
         return InputDataCache.getInputData(Keys.InputDataGroup.BUY_AGAIN, this::prepareMap).stream()
-                .map(val -> prepareNextTimePurchaseData(val))
+                .map(this::prepareNextTimePurchaseData)
                 .toList();
-
     }
 
     private CarPurchaseRequestInputData prepareNextTimePurchaseData(Map<String, List<String>> inputData) {
@@ -77,7 +74,6 @@ public class FileDataPreparationService {
                 .car(createCar(inputData.get(Keys.Domain.CAR.toString())))
                 .customerComment(inputData.get(Keys.Constants.WHAT.toString()).get(0))
                 .build();
-
     }
 
     private Customer createCustomer(List<String> inputData) {
@@ -86,7 +82,6 @@ public class FileDataPreparationService {
                     .email(inputData.get(0))
                     .build();
         }
-
         return Customer.builder()
                 .name(inputData.get(0))
                 .surname(inputData.get(1))
@@ -107,7 +102,6 @@ public class FileDataPreparationService {
                     .vin(inputData.get(0))
                     .build();
         }
-
         return CarToService.builder()
                 .vin(inputData.get(0))
                 .brand(inputData.get(1))
@@ -120,7 +114,6 @@ public class FileDataPreparationService {
         return InputDataCache.getInputData(Keys.InputDataGroup.DO_THE_SERVICE, this::prepareMap).stream()
                 .map(this::createCarServiceRequestToProcess)
                 .toList();
-
     }
 
     private CarServiceProcessingInputData createCarServiceRequestToProcess(Map<String, List<String>> inputData) {
@@ -132,7 +125,7 @@ public class FileDataPreparationService {
                 .partQuantity(Optional.ofNullable(whats.get(1)).filter(value -> !value.isBlank()).map(Integer::parseInt).orElse(null))
                 .serviceCode(whats.get(2))
                 .hours(Integer.parseInt(whats.get(3)))
-                .comment(whats.get(5))
+                .comment(whats.get(4))
                 .done(whats.get(5))
                 .build();
     }

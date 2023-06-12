@@ -37,14 +37,15 @@ public class InputDataCache {
                         line -> line.split("->")[0].trim(),
                         Collectors.mapping(
                                 line -> line.substring(line.indexOf("->") + 2).trim(),
-                                Collectors.toList())
+                                Collectors.toList()
+                        )
                 ));
     }
 
-
     public static <T> List<T> getInputData(
             final Keys.InputDataGroup inputDataGroup,
-            final Function<String, T> mapper) {
+            final Function<String, T> mapper
+    ) {
         return Optional.ofNullable(inputData.get(inputDataGroup.toString()))
                 .orElse(List.of())
                 .stream()

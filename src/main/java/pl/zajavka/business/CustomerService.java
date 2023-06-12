@@ -1,18 +1,19 @@
 package pl.zajavka.business;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.zajavka.business.dao.CustomerDAO;
-import pl.zajavka.domain.Address;
 import pl.zajavka.domain.Customer;
 
 import java.util.Optional;
-
+@Service
 @AllArgsConstructor
 public class CustomerService {
 
     private final CustomerDAO customerDAO;
 
+    @Transactional
     public void issueInvoice(Customer customer) {
         customerDAO.issueInvoice(customer);
     }

@@ -6,7 +6,7 @@ import pl.zajavka.business.dao.ServiceDAO;
 import pl.zajavka.domain.Service;
 
 import java.util.Optional;
-
+@org.springframework.stereotype.Service
 @AllArgsConstructor
 public class ServiceCatalogService {
 

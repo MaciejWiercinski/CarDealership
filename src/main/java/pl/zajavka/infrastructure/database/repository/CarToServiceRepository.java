@@ -14,12 +14,13 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CarToServiceRepository implements CarToServiceDAO {
 
+
     private final CarToServiceJpaRepository carToServiceJpaRepository;
     private final CarToServiceEntityMapper carToServiceEntityMapper;
 
     @Override
     public Optional<CarToService> findCarToServiceByVin(String vin) {
-        return carToServiceJpaRepository.findByVin(vin)
+        return carToServiceJpaRepository.findOptionalByVin(vin)
                 .map(carToServiceEntityMapper::mapFromEntity);
     }
 
@@ -32,7 +33,7 @@ public class CarToServiceRepository implements CarToServiceDAO {
 
     @Override
     public CarHistory findCarHistoryByVin(String vin) {
-        CarToServiceEntity carHistoryByVin = carToServiceJpaRepository.findCarHistoryByVin(vin);
-        return carToServiceEntityMapper.mapFromEntity(vin, carHistoryByVin);
+        CarToServiceEntity entity = carToServiceJpaRepository.findByVin(vin);
+        return carToServiceEntityMapper.mapFromEntity(vin, entity);
     }
 }

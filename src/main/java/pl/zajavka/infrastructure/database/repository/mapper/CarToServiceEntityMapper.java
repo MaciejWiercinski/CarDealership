@@ -16,10 +16,10 @@ public interface CarToServiceEntityMapper {
     @Mapping(target = "carServiceRequests", ignore = true)
     CarToService mapFromEntity(CarToServiceEntity carToServiceEntity);
 
-    default CarHistory mapFromEntity(String vin, CarToServiceEntity carHistoryByVin) {
+    default CarHistory mapFromEntity(String vin, CarToServiceEntity entity) {
         return CarHistory.builder()
                 .carVin(vin)
-                .carCarServiceRequests(carHistoryByVin.getCarServiceRequests().stream()
+                .carServiceRequests(entity.getCarServiceRequests().stream()
                         .map(request -> CarHistory.CarServiceRequest.builder()
                                 .carServiceRequestNumber(request.getCarServiceRequestNumber())
                                 .receivedDateTime(request.getReceivedDateTime())
@@ -33,17 +33,17 @@ public interface CarToServiceEntityMapper {
                                                 .price(service.getPrice())
                                                 .build())
                                         .toList())
-                                        .parts(request.getServiceParts().stream()
-                                                .map(ServicePartEntity::getPart)
-                                                .map(service -> Part.builder()
-                                                        .serialNumber(service.getSerialNumber())
-                                                        .description(service.getDescription())
-                                                        .price(service.getPrice())
-                                                        .build())
-                                                .toList())
-                                        .build())
-                                .toList())
-                        .build();
+                                .parts(request.getServiceParts().stream()
+                                        .map(ServicePartEntity::getPart)
+                                        .map(service -> Part.builder()
+                                                .serialNumber(service.getSerialNumber())
+                                                .description(service.getDescription())
+                                                .price(service.getPrice())
+                                                .build())
+                                        .toList())
+                                .build())
+                        .toList())
+                .build();
     }
 
 

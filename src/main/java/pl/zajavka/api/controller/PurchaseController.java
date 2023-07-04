@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+import pl.zajavka.api.dto.CarPurchaseDTO;
 import pl.zajavka.api.dto.CarToBuyDTO;
 import pl.zajavka.api.dto.mapper.CarMapper;
+import pl.zajavka.api.dto.mapper.CarPurchaseMapper;
 import pl.zajavka.business.CarPurchaseService;
 import pl.zajavka.domain.Salesman;
 
@@ -37,6 +39,13 @@ public class PurchaseController {
         var availableSalesmanPesels = carPurchaseService.availableSalesman().stream()
                 .map(Salesman::getPesel)
                 .toList();
+
+        return Map.of(
+                "availableCarDTOs", availableCars,
+                "availableCarVins", availableCarVins,
+                "availableSalesmanPesels", availableSalesmanPesels,
+                "carPurchaseDTO", CarPurchaseDTO.buildDefaultData()
+        );
     }
 
 

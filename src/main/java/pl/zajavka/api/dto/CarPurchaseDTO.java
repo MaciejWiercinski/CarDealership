@@ -24,4 +24,17 @@ public class CarPurchaseDTO {
 
     private String carVin;
     private String salesmanPesel;
+
+    public static CarPurchaseDTO buildDefaultData() {
+        return CarPurchaseDTO.builder()
+                .customerName("Alfred")
+                .customerSurname("Samochodowy")
+                .customerPhone("+48 754 552 234")
+                .customerEmail("ald.samoch@gmail.com")
+                .customerAddressCountry("Polska")
+                .customerAddressCity("Wrocław")
+                .customerAddressPostalCode("50-001")
+                .customerAddressStreet("Bokserska 15")
+                .build();
+    }
 }

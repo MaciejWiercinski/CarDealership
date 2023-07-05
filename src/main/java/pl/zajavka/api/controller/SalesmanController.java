@@ -10,8 +10,6 @@ import pl.zajavka.api.dto.mapper.SalesmanMapper;
 import pl.zajavka.business.CarPurchaseService;
 import pl.zajavka.business.CarServiceRequestService;
 
-import java.util.List;
-
 @Controller
 @AllArgsConstructor
 public class SalesmanController {

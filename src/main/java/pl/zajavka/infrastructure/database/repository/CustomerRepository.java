@@ -6,7 +6,6 @@ import pl.zajavka.business.dao.CustomerDAO;
 import pl.zajavka.domain.Customer;
 import pl.zajavka.infrastructure.database.entity.CarServiceRequestEntity;
 import pl.zajavka.infrastructure.database.entity.CustomerEntity;
-import pl.zajavka.infrastructure.database.entity.InvoiceEntity;
 import pl.zajavka.infrastructure.database.repository.jpa.CarServiceRequestJpaRepository;
 import pl.zajavka.infrastructure.database.repository.jpa.CustomerJpaRepository;
 import pl.zajavka.infrastructure.database.repository.jpa.InvoiceJpaRepository;

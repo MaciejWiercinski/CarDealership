@@ -25,6 +25,10 @@ public class CarServiceRequestService {
         return mechanicService.findAvailable();
     }
 
+    public List<CarServiceRequest> availableServiceRequests() {
+        return carServiceRequestDAO.findAvailable();
+    }
+
     @Transactional
     public void makeServiceRequest(CarServiceRequest serviceRequest) {
         if (serviceRequest.getCar().shouldExistsInCarToBuy()) {

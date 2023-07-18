@@ -9,6 +9,7 @@ import pl.zajavka.business.dao.CarToServiceDAO;
 import pl.zajavka.domain.CarHistory;
 import pl.zajavka.domain.CarToBuy;
 import pl.zajavka.domain.CarToService;
+import pl.zajavka.domain.exception.NotFoundException;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,7 +34,7 @@ public class CarService {
     public CarToBuy findCarToBuy(String vin) {
         Optional<CarToBuy> carToBuyByVin = carToBuyDAO.findCarToBuyByVin(vin);
         if (carToBuyByVin.isEmpty()) {
-            throw new RuntimeException("Could not find car by vin: [%s]".formatted(vin));
+            throw new NotFoundException("Could not find car by vin: [%s]".formatted(vin));
         }
         return carToBuyByVin.get();
     }

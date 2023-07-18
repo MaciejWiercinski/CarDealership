@@ -30,7 +30,7 @@ public class CarPurchaseDTO {
                 .customerName("Alfred")
                 .customerSurname("Samochodowy")
                 .customerPhone("+48 754 552 234")
-                .customerEmail("ald.samoch@gmail.com")
+                .customerEmail("alf.samoch@gmail.com")
                 .customerAddressCountry("Polska")
                 .customerAddressCity("Wrocław")
                 .customerAddressPostalCode("50-001")

@@ -1,6 +1,6 @@
 package pl.zajavka.domain.exception;
 
-public class ProcessingException extends RuntimeException {
+public class ProcessingException extends NotFoundException {
     public ProcessingException(String message) {
         super(message);
     }

@@ -1,5 +1,6 @@
 package pl.zajavka.api.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +19,7 @@ import pl.zajavka.domain.Invoice;
 import pl.zajavka.domain.Salesman;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -56,17 +58,13 @@ public class PurchaseController {
 
     @PostMapping(value = PURCHASE)
     public String makePurchase(
-            @ModelAttribute("carPurchaseDTO") CarPurchaseDTO carPurchaseDTO,
-            BindingResult result,
+            @Valid @ModelAttribute("carPurchaseDTO") CarPurchaseDTO carPurchaseDTO,
             ModelMap model
     ) {
-        if (result.hasErrors()) {
-            return "error";
-        }
         CarPurchaseRequest request = carPurchaseMapper.map(carPurchaseDTO);
         Invoice invoice = carPurchaseService.purchase(request);
 
-        if (!carPurchaseDTO.getExistingCustomerEmail().isBlank()) {
+        if (existingCustomerEmailExists(carPurchaseDTO.getExistingCustomerEmail())) {
             model.addAttribute("existingCustomerEmail", carPurchaseDTO.getCustomerEmail());
         } else {
             model.addAttribute("customerName", carPurchaseDTO.getCustomerName());
@@ -76,6 +74,10 @@ public class PurchaseController {
         model.addAttribute("invoiceNumber", invoice.getInvoiceNumber());
 
         return "car_purchase_done";
+    }
+
+    private boolean existingCustomerEmailExists(String email) {
+        return Objects.nonNull(email) && !email.isBlank();
     }
 
 }

@@ -19,24 +19,24 @@ public class PersistenceContainerTestConfiguration {
 
     @Bean
     @Qualifier(POSTGRESQL)
-    PostgreSQLContainer<?> postgreSQLContainer() {
-        PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>(POSTGRESQL_CONTAINER)
+    PostgreSQLContainer<?> postgresqlContainer() {
+        PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>(POSTGRESQL_CONTAINER)
                 .withUsername(USERNAME)
                 .withPassword(PASSWORD);
-        postgreSQLContainer.start();
-//        System.setProperty("spring.datasource.username", postgreSQLContainer.getUsername());
-//        System.setProperty("spring.datasource.password", postgreSQLContainer.getPassword());
-        return postgreSQLContainer;
+        postgresqlContainer.start();
+//        System.setProperty("spring.datasource.username", postgresqlContainer.getUsername());
+//        System.setProperty("spring.datasource.password", postgresqlContainer.getPassword());
+        return postgresqlContainer;
     }
 
     @Bean
-    DataSource dataSource(final PostgreSQLContainer<?> postgreSQLContainer) {
+    DataSource dataSource(final PostgreSQLContainer<?> container) {
         return DataSourceBuilder.create()
                 .type(HikariDataSource.class)
-                .driverClassName(postgreSQLContainer.getDriverClassName())
-                .url(postgreSQLContainer.getJdbcUrl())
-                .username(postgreSQLContainer.getUsername())
-                .password(postgreSQLContainer.getPassword())
+                .driverClassName(container.getDriverClassName())
+                .url(container.getJdbcUrl())
+                .username(container.getUsername())
+                .password(container.getPassword())
                 .build();
     }
 }

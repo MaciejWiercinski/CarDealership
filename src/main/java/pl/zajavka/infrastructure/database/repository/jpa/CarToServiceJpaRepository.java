@@ -23,4 +23,5 @@ public interface CarToServiceJpaRepository extends JpaRepository<CarToServiceEnt
             }
     )
     CarToServiceEntity findByVin(String vin);
+
 }

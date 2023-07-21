@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.jmx.export.metadata.ManagedOperation;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Builder
@@ -35,5 +35,4 @@ public class CarHistoryDTO {
         private List<ServiceDTO> services;
         private List<PartDTO> parts;
     }
-
 }

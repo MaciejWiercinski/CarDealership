@@ -25,7 +25,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class PurchaseController {
 
-    private static final String PURCHASE = "/purchase";
+        private static final String PURCHASE = "/purchase";
 
     private final CarPurchaseService carPurchaseService;
     private final CarPurchaseMapper carPurchaseMapper;

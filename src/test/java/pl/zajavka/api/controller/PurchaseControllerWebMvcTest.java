@@ -24,11 +24,10 @@ import pl.zajavka.domain.Invoice;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
 @WebMvcTest(controllers = PurchaseController.class)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @AutoConfigureMockMvc(addFilters = false)
-class PurchaseControllerTest {
+class PurchaseControllerWebMvcTest {
 
     private MockMvc mockMvc;
 

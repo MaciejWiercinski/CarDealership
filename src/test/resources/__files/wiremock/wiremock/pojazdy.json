@@ -1,0 +1,140 @@
+{
+  "data": [
+    {
+      "id": "604539927931971",
+      "type": "pojazdy",
+      "attributes": {
+        "marka": "NISSAN",
+        "kategoria-pojazdu": "13",
+        "typ": "J12",
+        "model": "NISSAN QASHQAI",
+        "wariant": "A",
+        "rodzaj-pojazdu": "SAMOCHÓD OSOBOWY",
+        "pochodzenie-pojazdu": "UŻYW. ZAKUPIONY W KRAJU",
+        "rok-produkcji": "FABRYCZNY",
+        "data-pierwszej-rejestracji-w-kraju": "2021-10-11",
+        "pojemnosc-skokowa-silnika": 1332,
+        "masa-wlasna": 1463,
+        "rodzaj-paliwa": "BENZYNA",
+        "wojewodztwo-kod": "14"
+      },
+      "links": {
+        "self": "https://api.cepik.gov.pl/pojazdy/604539927931971"
+      }
+    },
+    {
+      "id": "1093515250696309",
+      "type": "pojazdy",
+      "attributes": {
+        "marka": "MERCEDES-BENZ",
+        "kategoria-pojazdu": "11111111",
+        "typ": "---",
+        "model": "VITO",
+        "wariant": "---",
+        "rodzaj-pojazdu": "SAMOCHÓD CIĘŻAROWY",
+        "pochodzenie-pojazdu": "UŻYW. ZAKUPIONY W KRAJU",
+        "rok-produkcji": "FABRYCZNY",
+        "data-pierwszej-rejestracji-w-kraju": "2021-10-11",
+        "pojemnosc-skokowa-silnika": 1598,
+        "masa-wlasna": 1956,
+        "rodzaj-paliwa": "OLEJ NAPĘDOWY",
+        "wojewodztwo-kod": "14"
+      },
+      "links": {
+        "self": "https://api.cepik.gov.pl/pojazdy/1093515250696309"
+      }
+    },
+    {
+      "id": "8824220053690321",
+      "type": "pojazdy",
+      "attributes": {
+        "marka": "DAF",
+        "kategoria-pojazdu": "11111111",
+        "typ": "---",
+        "model": "LF55.250",
+        "wariant": "---",
+        "rodzaj-pojazdu": "SAMOCHÓD CIĘŻAROWY",
+        "pochodzenie-pojazdu": "UŻYW. IMPORT INDYW",
+        "rok-produkcji": "FABRYCZNY",
+        "data-pierwszej-rejestracji-w-kraju": "2021-10-11",
+        "pojemnosc-skokowa-silnika": 6693,
+        "masa-wlasna": 7100,
+        "rodzaj-paliwa": "OLEJ NAPĘDOWY",
+        "wojewodztwo-kod": "14"
+      },
+      "links": {
+        "self": "https://api.cepik.gov.pl/pojazdy/8824220053690321"
+      }
+    },
+    {
+      "id": "3337520661164204",
+      "type": "pojazdy",
+      "attributes": {
+        "marka": "CITROEN",
+        "kategoria-pojazdu": "0",
+        "typ": null,
+        "model": "JUMPER",
+        "wariant": null,
+        "rodzaj-pojazdu": "SAMOCHÓD CIĘŻAROWY",
+        "pochodzenie-pojazdu": "UŻYW. ZAKUPIONY W KRAJU",
+        "rok-produkcji": "FABRYCZNY",
+        "data-pierwszej-rejestracji-w-kraju": "2021-10-11",
+        "pojemnosc-skokowa-silnika": 1997,
+        "masa-wlasna": 2050,
+        "rodzaj-paliwa": "OLEJ NAPĘDOWY",
+        "wojewodztwo-kod": "14"
+      },
+      "links": {
+        "self": "https://api.cepik.gov.pl/pojazdy/3337520661164204"
+      }
+    },
+    {
+      "id": "346669836839359",
+      "type": "pojazdy",
+      "attributes": {
+        "marka": "TOYOTA",
+        "kategoria-pojazdu": "20",
+        "typ": "AN1P(EU,N)",
+        "model": "HILUX",
+        "wariant": "GUN126(LD)",
+        "rodzaj-pojazdu": "SAMOCHÓD CIĘŻAROWY",
+        "pochodzenie-pojazdu": "NOWY ZAKUPIONY W KRAJU",
+        "rok-produkcji": "FABRYCZNY",
+        "data-pierwszej-rejestracji-w-kraju": "2021-10-11",
+        "pojemnosc-skokowa-silnika": 2755,
+        "masa-wlasna": 2164,
+        "rodzaj-paliwa": "OLEJ NAPĘDOWY",
+        "wojewodztwo-kod": "14"
+      },
+      "links": {
+        "self": "https://api.cepik.gov.pl/pojazdy/346669836839359"
+      }
+    }
+  ],
+  "meta": {
+    "json-ld-id": "/pojazdy?wojewodztwo=14&data-od=20211010&data-do=20221010&limit=5&page=1&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=false",
+    "schema": "https://api.cepik.gov.pl/www/schema/vehicle.json",
+    "dc:title": "Lista pojazdów",
+    "schema:provider": "Ministerstwo Cyfryzacji",
+    "schema:datePublished": "2019-05-13",
+    "schema:dateModified": "2023-08-05",
+    "dc:description": "Lista pojazdów udostępnionych z bazy CEPiK",
+    "dc:language": "pl",
+    "sy:updatePeriod": "weekly",
+    "sy:updateFrequency": "1",
+    "sy:updateBase": "2023-08-12",
+    "schema:contentType": "application/json",
+    "schema:isPartOf": "https://api.cepik.gov.pl/pojazdy",
+    "count": 306378,
+    "page": 1,
+    "limit": 5,
+    "dc:rights": "brak",
+    "schema:keywords": "pojazdy, cepik, cep, dane techniczne, spalanie, samochody, autobusy, motocykle, daty rejestracji"
+  },
+  "links": {
+    "first": "https://api.cepik.gov.pl/pojazdy?wojewodztwo=14&data-od=20211010&data-do=20221010&limit=5&page=1&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=false",
+    "self": "https://api.cepik.gov.pl/pojazdy?wojewodztwo=14&data-od=20211010&data-do=20221010&limit=5&page=1&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=false",
+    "next": "https://api.cepik.gov.pl/pojazdy?wojewodztwo=14&data-od=20211010&data-do=20221010&limit=5&page=2&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=false",
+    "last": "https://api.cepik.gov.pl/pojazdy?wojewodztwo=14&data-od=20211010&data-do=20221010&limit=5&page=61276&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=false"
+  }
+}

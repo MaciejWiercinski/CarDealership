@@ -16,8 +16,8 @@ public class CepikIT extends RestAssuredIntegrationTestBase implements CepikCont
     @Test
     void thatFindingRandomVehicleWorksCorrectly() {
 //        given
-        LocalDate dateFrom = LocalDate.of(2022, 1, 1);
-        LocalDate dateTo = LocalDate.of(2022, 6, 30);
+        LocalDate dateFrom = LocalDate.of(2023, 1, 1);
+        LocalDate dateTo = LocalDate.of(2023, 6, 30);
         stubForSlowniki(wireMockServer);
         stubForPojazdy(wireMockServer, dateFrom.toString(), dateTo.toString());
         stubForPojzad(wireMockServer);
